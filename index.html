@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>3 in a Row</title>
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<div id="game-title">THREE-IN-A-ROW</div>
+<div id="status"></div>
+<button id="restart-btn">RESTART</button>
+<div class="board">
+    
+
+
+    <!-- Horizontal lines (6) -->
+    <div class="h-line h1"></div>
+    <div class="h-line h2"></div>
+    <div class="h-line h3"></div>
+    <div class="h-line h4"></div>
+    <div class="h-line h5"></div>
+    <div class="h-line h6"></div>
+
+    <!-- Vertical lines (6) -->
+    <div class="v-line v1"></div>
+    <div class="v-line v2"></div>
+    <div class="v-line v3"></div>
+    <div class="v-line v4"></div>
+    <div class="v-line v5"></div>
+    <div class="v-line v6"></div>
+
+
+    <!-- Diagonal lines to center -->
+    <div class="diag d1-d5"></div>
+    <div class="diag d3-d5"></div>
+    <div class="diag d7-d5"></div>
+    <div class="diag d9-d5"></div>
+
+
+    <!-- Dots -->
+    <div class="dot d1" id="d1"></div><div class="dot d2" id="d2"></div><div class="dot d3" id="d3"></div>
+    <div class="dot d4" id="d4"></div><div class="dot d5" id="d5"></div><div class="dot d6" id="d6"></div>
+    <div class="dot d7" id="d7"></div><div class="dot d8" id="d8"></div><div class="dot d9" id="d9"></div>
+
+    <!-- Red coins -->
+    <div class="coin_red" id="r1"></div>
+    <div class="coin_red" id="r2"></div>
+    <div class="coin_red" id="r3"></div>
+
+    <!-- Blue coins -->
+    <div class="coin_blue" id="b1"></div>
+    <div class="coin_blue" id="b2"></div>
+    <div class="coin_blue" id="b3"></div>
+
+
+</div>
+<script src="script.js"></script>
+</body>
+</html>

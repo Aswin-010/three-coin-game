@@ -1,0 +1,347 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #f2f2f2;
+     background-color: #1f1f1f;
+}
+
+
+#game-title {
+  position: fixed;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  font-size: 34px;
+  font-weight: bold;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+
+  color: #ffd700; /* gold */
+  text-shadow:
+    0 0 6px #ffd700,
+    0 0 14px #ffb700,
+    0 0 25px #ff9f00;
+
+  z-index: 1001;
+}
+
+
+
+
+.board {
+    position: relative;
+    width: 300px;
+    height: 300px;
+     background-color: #ffffff;
+  border-radius: 12px;
+}
+
+/* Board fade when game is over */
+.board.fade {
+  opacity: 0.25;
+  filter: blur(2px);
+  transition: opacity 2s ease, filter 2s ease;
+}
+
+
+
+/* Dots */
+.dot {
+    width: 14px;
+    height: 14px;
+    background: black;
+     background-color: #333;
+    border-radius: 50%;
+    position: absolute;
+}
+
+/* Dot positions */
+.d1 { top: 0; left: 0; }
+.d2 { top: 0; left: 143px; }
+.d3 { top: 0; left: 286px; }
+
+.d4 { top: 143px; left: 0; }
+.d5 { top: 143px; left: 143px; }
+.d6 { top: 143px; left: 286px; }
+
+.d7 { top: 286px; left: 0; }
+.d8 { top: 286px; left: 143px; }
+.d9 { top: 286px; left: 286px; }
+
+/* Horizontal short lines */
+.h-line {
+    position: absolute;
+    width: 150px;
+    height: 2px;
+    background: black;
+}
+
+.h1 { top: 7px; left: 7px; }
+.h2 { top: 7px; left: 150px; }
+
+.h3 { top: 150px; left: 7px; }
+.h4 { top: 150px; left: 150px; }
+
+.h5 { top: 293px; left: 7px; }
+.h6 { top: 293px; left: 150px; }
+
+/* Vertical short lines */
+.v-line {
+    position: absolute;
+    width: 2px;
+    height: 150px;
+    background: black;
+}
+
+.v1 { top: 7px; left: 7px; }
+.v2 { top: 150px; left: 7px; }
+
+.v3 { top: 7px; left: 150px; }
+.v4 { top: 150px; left: 150px; }
+
+.v5 { top: 7px; left: 293px; }
+.v6 { top: 150px; left: 293px; }
+
+
+
+/* Common diagonal style */
+.diag {
+    position: absolute;
+    width: 212px;
+    height: 2px;
+    background: black;
+    transform-origin: left center;
+}
+
+/* d1 → d5 (top-left to center) */
+.d1-d5 {
+    top: 7px;
+    left: 7px;
+    transform: rotate(45deg);
+}
+
+/* d3 → d5 (top-right to center) */
+.d3-d5 {
+    top: 7px;
+    left: 293px;
+    transform: rotate(135deg);
+}
+
+/* d7 → d5 (bottom-left to center) */
+.d7-d5 {
+    top: 293px;
+    left: 7px;
+    transform: rotate(-45deg);
+}
+
+/* d9 → d5 (bottom-right to center) */
+.d9-d5 {
+    top: 293px;
+    left: 293px;
+    transform: rotate(-135deg);
+}
+
+
+
+
+/* Blue coin */
+.coin_blue {
+     width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    position: absolute;
+    z-index: 3;
+    cursor: pointer;
+
+    /* Centers coin exactly on dot coordinates */
+    transform: translate(-50%, -50%);
+    background-color: #007bff; /* nice visible blue */
+}
+
+/* Green coin */
+.coin_red {
+     width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    position: absolute;
+    z-index: 3;
+    cursor: pointer;
+
+    /* Centers coin exactly on dot coordinates */
+    transform: translate(-50%, -50%);
+    background-color: #db1c1c; /* game-style green */
+}
+
+.selected { outline: 3px solid gold; }
+
+#status {
+  position: fixed;
+  font-size: 24px;
+  font-weight: bold;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+}
+
+/* RED → top */
+#status.red {
+  top: 110px;
+  color: red;
+}
+
+/* BLUE → bottom */
+#status.blue {
+  bottom: 60px;
+  color: blue;
+}
+
+/* WIN text only */
+#status.win {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  bottom: auto;
+  transform: translate(-50%, -50%);
+
+  font-size: 64px;     /* BIG text */
+  font-weight: bold;
+  text-align: center;
+  animation: winTextAppear 1.5s ease-out forwards;
+  text-shadow: 0 0 20px currentColor;
+  z-index: 3000;
+}
+
+/* Win colors */
+#status.win.red {
+  color: red;
+}
+
+#status.win.blue {
+  color: blue;
+}
+
+
+/* Blue winning coins */
+
+
+
+
+
+
+/* Highlight winning dots */
+.dot.win {
+  background-color: gold;
+  box-shadow: 0 0 10px 4px gold;
+}
+
+/* Optional: highlight coins too */
+.coin_red.win {
+  box-shadow: 0 0 15px 5px red;
+}
+
+.coin_blue.win {
+  box-shadow: 0 0 15px 5px blue;
+}
+
+
+/* Highlight winning lines */
+.h-line.win,
+.v-line.win,
+.diag.win {
+  background-color: gold;
+  box-shadow: 0 0 10px 3px gold;
+}
+
+
+@keyframes winTextAppear {
+  0% {
+    transform: translate(-50%, -50%) scale(0.6);
+    opacity: 0;
+  }
+  60% {
+    transform: translate(-50%, -50%) scale(1.1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+}
+
+
+
+#restart-btn {
+  position: fixed;
+  top: 65%;
+  left: 50%;
+  transform: translateX(-50%);
+
+  padding: 12px 26px;
+  font-size: 18px;
+  font-weight: bold;
+
+  background: gold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+
+  display: none;          /* hidden by default */
+  z-index: 3000;
+}
+
+#restart-btn:hover {
+  background: #8f750c;
+}
+
+
+/* Responsive board scaling */
+.board {
+  transform-origin: center;
+}
+
+@media (max-width: 480px) {
+  .board {
+    transform: scale(0.8);
+  }
+
+  #game-title {
+    font-size: 26px;
+  }
+
+  #status.turn {
+    font-size: 18px;
+  }
+
+  #status.win {
+    font-size: 44px;
+  }
+
+  #restart-btn {
+    font-size: 16px;
+    padding: 10px 22px;
+  }
+}
+
+
+@media (max-width: 480px) {
+  .coin_red,
+  .coin_blue {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+
+@media (max-width: 480px) {
+
+  #game-title {
+    font-size: 24px;        /* smaller for phone */
+    letter-spacing: 1px;   /* reduce spacing */
+    white-space: nowrap;   /* 🔑 prevent line break */
+  }
+
+}
+
